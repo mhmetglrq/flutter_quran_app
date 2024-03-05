@@ -124,3 +124,10 @@ extension ThemeExtension on BuildContext {
   /// Get the brightness
   Brightness get brightness => Theme.of(this).brightness;
 }
+
+extension StringExtension on String {
+  String get capitalize => "${this[0].toUpperCase()}${substring(1)}";
+  String get capitalizeFirstofEach =>
+      split(" ").map((str) => str.capitalize).join(" ");
+  String get aEkle => "a$this";
+}
