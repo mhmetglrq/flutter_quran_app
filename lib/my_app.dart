@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quran_app/config/routes/app_route_names.dart';
+import 'package:flutter_quran_app/config/routes/app_router.dart';
+import 'package:flutter_quran_app/config/theme/app_theme.dart';
 import 'package:flutter_quran_app/features/home/views/home.dart';
 
 class MyApp extends StatelessWidget {
@@ -8,12 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Quran',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-        
-      ),
+      theme: AppTheme.lightTheme,
       home: const Home(),
+      initialRoute: AppRouteNames.onboarding,
+      onGenerateRoute: AppRouter.onGenerateRoutes,
     );
   }
 }
