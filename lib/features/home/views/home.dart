@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quran/quran.dart' as quran;
+import 'package:flutter_quran_app/config/extensions/context_extension.dart';
+import 'package:flutter_quran_app/config/items/app_colors.dart';
+import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -7,42 +10,84 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Hafiz"),
+      ),
       body: SafeArea(
-        child: PageView.builder(
-          itemCount: 604,
-          itemBuilder: (context, index) {
-            return index == 0
-                ? const Center(child: Text("Bismillahirrahmanirrahim"))
-                : Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Center(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "${quran.getSurahNameTurkish(index)} Suresi || $index",
-                                  style: const TextStyle(fontSize: 20),
-                                ),
+        child: Padding(
+          padding: context.paddingAllDefault,
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [
+                      AppColors.darkGreen,
+                      AppColors.lightGreen,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadiusDirectional.circular(23),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: context.paddingLeftDefault,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: context.paddingVerticalLow,
+                            child: const Text("Last Read"),
+                          ),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("ةحتافلا"),
+                              Text("Ayah no. 1"),
+                            ],
+                          ),
+                          Padding(
+                            padding: context.paddingVerticalLow,
+                            child: MaterialButton(
+                              onPressed: () {},
+                              color: AppColors.whiteColor,
+                              textColor: AppColors.blackColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              padding: context.paddingAllLow,
+                              child: const Row(
+                                children: [
+                                  Text("Continue Reading"),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            for (var i = 0; i < quran.getVerseCount(index); i++)
-                              Text(
-                                "${i + 1}.Ayet: ${quran.getVerseTranslation(index, i + 1, translation: quran.Translation.trSaheeh)}\n",
-                                style: const TextStyle(fontSize: 20),
-                                textAlign: TextAlign.justify,
-                              ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  );
-          },
+                    SvgPicture.asset(
+                      SvgConstants.quran.getSvg,
+                      height: context.dynamicHeight(
+                        0.25,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: context.paddingVerticalLow,
+                child: Text(
+                  "Popular",
+                  style: context.textTheme.titleMedium,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
