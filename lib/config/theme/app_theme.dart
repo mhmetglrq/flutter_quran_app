@@ -4,11 +4,22 @@ import 'package:flutter_quran_app/config/items/app_colors.dart';
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.scaffoldBgColor,
+    scaffoldBackgroundColor: AppColors.whiteColor,
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       backgroundColor: AppColors.whiteColor,
       surfaceTintColor: AppColors.whiteColor,
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: AppColors.darkGreen,
+      ),
+      titleTextStyle: TextStyle(
+        color: AppColors.darkGreen,
+        fontWeight: FontWeight.w600,
+        fontSize: 24,
+        wordSpacing: 1.5,
+        fontFamily: "Montserrat",
+      ),
     ),
     textTheme: const TextTheme(
       displayMedium: TextStyle(
