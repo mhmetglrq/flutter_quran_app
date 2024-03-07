@@ -151,6 +151,7 @@ class _SurahDetailState extends State<SurahDetail> {
                                               i + 1,
                                             ),
                                           ),
+                                          volume: 1.0,
                                         );
                                         setState(() {
                                           _isPlaying = true;
