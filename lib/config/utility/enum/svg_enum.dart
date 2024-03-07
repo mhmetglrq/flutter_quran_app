@@ -7,7 +7,10 @@ enum SvgConstants {
   cardBottom("card_bottom"),
   surahIndex("surah_index"),
   basmala("basmala"),
-  ;
+  share("share"),
+  play("play"),
+  bookmark("bookmark"),
+  pause("pause");
 
   final String value;
   const SvgConstants(this.value);
