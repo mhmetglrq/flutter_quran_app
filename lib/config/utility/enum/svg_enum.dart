@@ -6,6 +6,7 @@ enum SvgConstants {
   test("test"),
   cardBottom("card_bottom"),
   surahIndex("surah_index"),
+  basmala("basmala"),
   ;
 
   final String value;

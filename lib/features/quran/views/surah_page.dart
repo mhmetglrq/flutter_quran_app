@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/config/extensions/context_extension.dart';
 import 'package:flutter_quran_app/config/items/app_colors.dart';
+import 'package:flutter_quran_app/config/routes/app_route_names.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quran/quran.dart' as quran;
 
-class QuranPage extends StatelessWidget {
-  const QuranPage({super.key});
+class SurahPage extends StatelessWidget {
+  const SurahPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +81,15 @@ class SurahItem extends StatelessWidget {
         ),
         trailing: Text(
           quran.getSurahNameArabic(surahIndex + 1),
+          textDirection: TextDirection.rtl,
           style: context.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
             fontSize: context.dynamicHeight(0.03),
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, "/quran/surah",
-              arguments: surahIndex + 1);
+          Navigator.pushNamed(context, AppRouteNames.surahDetail,
+              arguments: {'surahIndex': surahIndex + 1});
         },
       ),
     );
