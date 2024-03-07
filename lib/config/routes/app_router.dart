@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/config/routes/app_route_names.dart';
 import 'package:flutter_quran_app/features/home/views/home.dart';
 import 'package:flutter_quran_app/features/onboarding/views/onboarding.dart';
+import 'package:flutter_quran_app/features/quran/views/quran_page.dart';
 
 class AppRouter {
   static Route onGenerateRoutes(RouteSettings settings) {
@@ -13,6 +14,8 @@ class AppRouter {
         return _materialRoute(const Home());
       case AppRouteNames.onboarding:
         return _materialRoute(const Onboarding());
+      case AppRouteNames.quranPage:
+        return _materialRoute(const QuranPage());
 
       default:
         return _materialRoute(const Home());

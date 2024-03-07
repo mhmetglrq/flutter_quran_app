@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/config/extensions/context_extension.dart';
 import 'package:flutter_quran_app/config/items/app_colors.dart';
+import 'package:flutter_quran_app/config/routes/app_route_names.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -52,7 +53,8 @@ class Onboarding extends StatelessWidget {
             Padding(
               padding: context.paddingVerticalDefault,
               child: ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, "/home"),
+                onPressed: () =>
+                    Navigator.pushNamed(context, AppRouteNames.home),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.whiteColor,
                   padding: EdgeInsets.symmetric(
