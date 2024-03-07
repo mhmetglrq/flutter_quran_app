@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quran_app/config/constants/menu_constants.dart';
 import 'package:flutter_quran_app/config/extensions/context_extension.dart';
 import 'package:flutter_quran_app/config/items/app_colors.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../widgets/menu_item_card.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -129,27 +132,28 @@ class Home extends StatelessWidget {
               ),
               Expanded(
                 child: GridView.custom(
+                  physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverWovenGridDelegate.count(
                     crossAxisCount: 2,
-                    mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
                     tileBottomSpace: 10,
                     pattern: [
-                      const WovenGridTile(1),
                       const WovenGridTile(
                         1,
-                        crossAxisRatio: 0.9,
-                        alignment: AlignmentDirectional.centerEnd,
+                        // crossAxisRatio: 0.9,
+                        alignment: AlignmentDirectional.center,
+                      ),
+                      const WovenGridTile(
+                        0.9,
+                        alignment: AlignmentDirectional.topCenter,
                       ),
                     ],
                   ),
                   childrenDelegate: SliverChildBuilderDelegate(
-                    childCount: 4,
-                    (context, index) => Container(
-                      color: AppColors.darkGreen,
-                      child: Text(index.toString()),
-                    ),
-                  ),
+                      childCount: menuItems.length, (context, index) {
+                    final item = menuItems[index];
+                    return MenuItemCard(item: item);
+                  }),
                 ),
               )
             ],
