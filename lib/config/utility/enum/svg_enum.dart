@@ -5,6 +5,7 @@ enum SvgConstants {
   tasbee("tasbee"),
   test("test"),
   cardBottom("card_bottom"),
+  surahIndex("surah_index"),
   ;
 
   final String value;

@@ -1,4 +1,5 @@
 import 'package:flutter_quran_app/config/items/app_colors.dart';
+import 'package:flutter_quran_app/config/routes/app_route_names.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 
 List<Map<String, dynamic>> menuItems = [
@@ -7,7 +8,7 @@ List<Map<String, dynamic>> menuItems = [
     "svgPath": SvgConstants.quranCard.getSvg,
     "color": AppColors.quranCardColor,
     "bottomColor": AppColors.quranCardBottomColor,
-    "route": "/quran",
+    "route": AppRouteNames.quranPage,
   },
   {
     "title": "Listening",

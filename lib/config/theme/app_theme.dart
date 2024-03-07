@@ -51,11 +51,11 @@ class AppTheme {
         fontFamily: "Poppins",
       ),
       headlineSmall: TextStyle(
-        color: AppColors.whiteColor,
+        color: AppColors.darkGreen,
         fontWeight: FontWeight.w700,
         fontSize: 20,
         wordSpacing: 1.5,
-        fontFamily: "Poppins",
+        fontFamily: "Inter",
       ),
       headlineLarge: TextStyle(
         color: AppColors.whiteColor,
