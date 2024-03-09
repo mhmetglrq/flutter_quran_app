@@ -9,7 +9,7 @@ class AppRouter {
   static Route onGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case AppRouteNames.home:
-        return _materialRoute(const Home());
+        return _materialRoute(Home());
 
       case AppRouteNames.surahDetail:
         final args = settings.arguments as Map<String, dynamic>;
@@ -23,7 +23,7 @@ class AppRouter {
         return _materialRoute(const SurahPage());
 
       default:
-        return _materialRoute(const Home());
+        return _materialRoute(Home());
     }
   }
 

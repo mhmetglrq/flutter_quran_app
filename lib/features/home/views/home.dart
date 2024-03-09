@@ -5,11 +5,13 @@ import 'package:flutter_quran_app/config/items/app_colors.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../widgets/menu_item_card.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+  final Box savedAyahs = Hive.box("savedAyahs");
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class Home extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "ةحتافلا",
+                                  "${savedAyahs.get("surahNameArabic")}",
                                   style:
                                       context.textTheme.labelMedium?.copyWith(
                                     color: AppColors.whiteColor,
@@ -68,7 +70,7 @@ class Home extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Ayah no. 1",
+                                  "${savedAyahs.get("ayahNumber")}",
                                   style:
                                       context.textTheme.labelMedium?.copyWith(
                                     color: AppColors.whiteColor,
