@@ -17,6 +17,7 @@ class SurahDetail extends StatefulWidget {
 class _SurahDetailState extends State<SurahDetail> {
   final player = AudioPlayer();
   bool _isPlaying = false;
+  int _currentVerse = 0;
 
   @override
   void dispose() {
@@ -99,109 +100,115 @@ class _SurahDetailState extends State<SurahDetail> {
                   ),
                 ),
               ),
-              for (int i = 0; i < quran.getVerseCount(widget.surahIndex); i++)
-                Column(
-                  children: [
-                    Padding(
-                      padding: context.paddingVerticalLow,
-                      child: Card(
-                        elevation: 5,
-                        surfaceTintColor: AppColors.whiteColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: ListTile(
-                          contentPadding: context.paddingHorizontalLow,
-                          leading: CircleAvatar(
-                            backgroundColor: AppColors.darkGreen,
-                            child: Text(
-                              (i + 1).toString(),
-                              style: context.textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.whiteColor,
-                                fontSize: context.dynamicHeight(0.02),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: quran.getVerseCount(widget.surahIndex),
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: context.paddingVerticalLow,
+                        child: Card(
+                          elevation: 5,
+                          surfaceTintColor: AppColors.whiteColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: ListTile(
+                            contentPadding: context.paddingHorizontalLow,
+                            leading: CircleAvatar(
+                              backgroundColor: AppColors.darkGreen,
+                              child: Text(
+                                (index + 1).toString(),
+                                style: context.textTheme.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.whiteColor,
+                                  fontSize: context.dynamicHeight(0.02),
+                                ),
                               ),
                             ),
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon:
-                                    SvgPicture.asset(SvgConstants.share.getSvg),
-                              ),
-                              _isPlaying
-                                  ? IconButton(
-                                      onPressed: () async {
-                                        await player.pause();
-                                        setState(() {
-                                          _isPlaying = false;
-                                        });
-                                      },
-                                      icon: SvgPicture.asset(
-                                          SvgConstants.pause.getSvg),
-                                    )
-                                  : IconButton(
-                                      onPressed: () async {
-                                        await player.play(
-                                          UrlSource(
-                                            quran.getAudioURLByVerse(
-                                              widget.surahIndex,
-                                              i + 1,
-                                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: SvgPicture.asset(
+                                      SvgConstants.share.getSvg),
+                                ),
+                                IconButton(
+                                  onPressed: () async {
+                                    if (_isPlaying) {
+                                      await player.pause();
+                                      setState(() {
+                                        _isPlaying = false;
+                                      });
+                                      return;
+                                    } else {
+                                      await player.play(
+                                        UrlSource(
+                                          quran.getAudioURLByVerse(
+                                            widget.surahIndex,
+                                            index + 1,
                                           ),
-                                          volume: 1.0,
-                                        );
-                                        setState(() {
-                                          _isPlaying = true;
-                                        });
-                                      },
-                                      icon: SvgPicture.asset(
-                                          SvgConstants.play.getSvg),
-                                    ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    SvgConstants.bookmark.getSvg),
-                              ),
-                            ],
+                                        ),
+                                        volume: 1.0,
+                                      );
+                                      setState(() {
+                                        _isPlaying = true;
+                                        _currentVerse = index + 1;
+                                      });
+                                    }
+                                  },
+                                  icon: SvgPicture.asset(
+                                      _isPlaying && _currentVerse == index + 1
+                                          ? SvgConstants.pause.getSvg
+                                          : SvgConstants.play.getSvg),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: SvgPicture.asset(
+                                      SvgConstants.bookmark.getSvg),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      padding: context.paddingBottomLow,
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        quran.getVerse(widget.surahIndex, i + 1,
-                            verseEndSymbol: true),
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          fontSize: context.dynamicHeight(0.025),
+                      Container(
+                        padding: context.paddingBottomLow,
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          quran.getVerse(widget.surahIndex, index + 1,
+                              verseEndSymbol: true),
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            fontSize: context.dynamicHeight(0.025),
+                          ),
+                          textDirection: TextDirection.rtl,
                         ),
-                        textDirection: TextDirection.rtl,
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        quran.getVerseTranslation(
-                          widget.surahIndex,
-                          i + 1,
-                          translation: quran.Translation.trSaheeh,
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          quran.getVerseTranslation(
+                            widget.surahIndex,
+                            index + 1,
+                            translation: quran.Translation.trSaheeh,
+                          ),
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            fontSize: context.dynamicHeight(0.025),
+                          ),
+                          textAlign: TextAlign.justify,
                         ),
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          fontSize: context.dynamicHeight(0.025),
-                        ),
-                        textAlign: TextAlign.justify,
                       ),
-                    ),
-                    Padding(
-                      padding: context.paddingVerticalLow,
-                      child: const Divider(),
-                    ),
-                  ],
-                ),
+                      Padding(
+                        padding: context.paddingVerticalLow,
+                        child: const Divider(),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ],
           ),
         ),
