@@ -25,8 +25,18 @@ class _SurahDetailState extends State<SurahDetail> {
     super.dispose();
   }
 
+  //player oynatmayı bitirdiğin de çalışacak
+  void onVerseComplete() {
+    player.onPlayerComplete.listen((event) {
+      setState(() {
+        _isPlaying = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    onVerseComplete();
     return Scaffold(
       appBar: AppBar(
         title: Text(
