@@ -12,15 +12,20 @@ class VerseItem extends StatelessWidget {
     required int currentVerse,
     required this.surahIndex,
     required this.index,
-    this.onPressed,
+    required bool isSaved,
+    this.playButtonOnPressed,
+    this.bookmarkButtonOnPressed,
   })  : _isPlaying = isPlaying,
-        _currentVerse = currentVerse;
+        _currentVerse = currentVerse,
+        _isSaved = isSaved;
 
   final bool _isPlaying;
   final int _currentVerse;
   final int surahIndex;
   final int index;
-  final Function()? onPressed;
+  final bool _isSaved;
+  final Function()? playButtonOnPressed;
+  final Function()? bookmarkButtonOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +60,19 @@ class VerseItem extends StatelessWidget {
                     icon: SvgPicture.asset(SvgConstants.share.getSvg),
                   ),
                   IconButton(
-                    onPressed: onPressed,
+                    onPressed: playButtonOnPressed,
                     icon: SvgPicture.asset(
                         _isPlaying && _currentVerse == index + 1
                             ? SvgConstants.pause.getSvg
                             : SvgConstants.play.getSvg),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(SvgConstants.bookmark.getSvg),
+                    onPressed: bookmarkButtonOnPressed,
+                    icon: SvgPicture.asset(
+                      _isSaved
+                          ? SvgConstants.bookmarkFilled.getSvg
+                          : SvgConstants.bookmark.getSvg,
+                    ),
                   ),
                 ],
               ),
