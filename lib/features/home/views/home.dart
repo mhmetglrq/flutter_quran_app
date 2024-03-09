@@ -58,27 +58,40 @@ class Home extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${savedAyahs.get("surahNameArabic")}",
-                                  style:
-                                      context.textTheme.labelMedium?.copyWith(
-                                    color: AppColors.whiteColor,
-                                    fontSize: context.dynamicHeight(0.025),
-                                  ),
-                                ),
-                                Text(
-                                  "${savedAyahs.get("ayahNumber")}",
-                                  style:
-                                      context.textTheme.labelMedium?.copyWith(
-                                    color: AppColors.whiteColor,
-                                    fontSize: context.dynamicHeight(0.022),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            ValueListenableBuilder(
+                                valueListenable: savedAyahs.listenable(),
+                                builder: (context, value, child) {
+                                  final surahNameArabic =
+                                      savedAyahs.get("surahNameArabic");
+                                  final surahNameTurkish =
+                                      savedAyahs.get("surahNameTurkish");
+                                  final ayahNumber =
+                                      savedAyahs.get("ayahNumber");
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "$surahNameArabic - $surahNameTurkish",
+                                        style: context.textTheme.labelMedium
+                                            ?.copyWith(
+                                          color: AppColors.whiteColor,
+                                          fontSize:
+                                              context.dynamicHeight(0.025),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Ayah no.$ayahNumber",
+                                        style: context.textTheme.labelMedium
+                                            ?.copyWith(
+                                          color: AppColors.whiteColor,
+                                          fontSize:
+                                              context.dynamicHeight(0.022),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                }),
                             Padding(
                               padding: context.paddingVerticalLow,
                               child: MaterialButton(

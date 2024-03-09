@@ -10,6 +10,7 @@ enum SvgConstants {
   share("share"),
   play("play"),
   bookmark("bookmark"),
+  bookmarkFilled("bookmark_filled"),
   pause("pause");
 
   final String value;
