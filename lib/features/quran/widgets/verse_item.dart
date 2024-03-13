@@ -4,6 +4,7 @@ import 'package:flutter_quran_app/config/items/app_colors.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quran/quran.dart' as quran;
+import 'package:share_plus/share_plus.dart';
 
 class VerseItem extends StatelessWidget {
   const VerseItem({
@@ -15,6 +16,7 @@ class VerseItem extends StatelessWidget {
     required bool isSaved,
     this.playButtonOnPressed,
     this.bookmarkButtonOnPressed,
+    this.shareButtonOnPressed,
   })  : _isPlaying = isPlaying,
         _currentVerse = currentVerse,
         _isSaved = isSaved;
@@ -26,6 +28,7 @@ class VerseItem extends StatelessWidget {
   final bool _isSaved;
   final Function()? playButtonOnPressed;
   final Function()? bookmarkButtonOnPressed;
+  final Function()? shareButtonOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,9 @@ class VerseItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await Share.share("qweıhuowqe");
+                    },
                     icon: SvgPicture.asset(SvgConstants.share.getSvg),
                   ),
                   IconButton(
