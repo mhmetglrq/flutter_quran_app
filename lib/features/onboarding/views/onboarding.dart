@@ -45,7 +45,7 @@ class Onboarding extends StatelessWidget {
                 style: context.textTheme.titleMedium?.copyWith(
                   color: AppColors.whiteColor,
                   fontSize: context.dynamicHeight(0.034),
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -72,8 +72,8 @@ class Onboarding extends StatelessWidget {
                       "Get Started",
                       style: context.textTheme.titleMedium?.copyWith(
                         color: AppColors.blackColor,
-                        fontSize: context.dynamicHeight(0.025),
-                        fontWeight: FontWeight.w400,
+                        fontSize: context.dynamicHeight(0.027),
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     SizedBox(
