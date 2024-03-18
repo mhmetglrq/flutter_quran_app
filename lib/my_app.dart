@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Quran',
       theme: AppTheme.lightTheme,
-      showDebugBanner: false,
+      debugShowCheckedModeBanner: false,
       initialRoute: AppRouteNames.onboarding,
       onGenerateRoute: AppRouter.onGenerateRoutes,
     );
