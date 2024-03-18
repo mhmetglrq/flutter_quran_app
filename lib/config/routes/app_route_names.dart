@@ -4,4 +4,5 @@ class AppRouteNames {
   static const String onboarding = '/onboarding';
   static const String settings = '/settings';
   static const String quranPage = '/quran-page';
+  static const String listening = '/listening';
 }
