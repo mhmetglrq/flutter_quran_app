@@ -11,7 +11,13 @@ enum SvgConstants {
   play("play"),
   bookmark("bookmark"),
   bookmarkFilled("bookmark_filled"),
-  pause("pause");
+  pause("pause"),
+  settings("settings"),
+  heart("heart"),
+  musicSign("music_sign"),
+  skipBack("skip_back"),
+  skipFwd("skip_fwd"),
+  ;
 
   final String value;
   const SvgConstants(this.value);

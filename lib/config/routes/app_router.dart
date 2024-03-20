@@ -36,18 +36,10 @@ class AppRouter {
     return MaterialPageRoute(builder: (_) => view);
   }
 
-  static Route<dynamic> _materialBottomSheetRoute(Widget view) {
-    return MaterialPageRoute(
-      builder: (_) => view,
-      fullscreenDialog: true,
-    );
-  }
-
   static Route<dynamic> _materialDialogRoute(Widget view) {
     return MaterialPageRoute(
-      
       builder: (_) => view,
-      fullscreenDialog: true,
+      fullscreenDialog: false,
     );
   }
 }
