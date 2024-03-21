@@ -86,14 +86,14 @@ class AppTheme {
         fontFamily: "Poppins",
       ),
       titleLarge: TextStyle(
-        color: AppColors.whiteColor,
+        color: AppColors.darkGreen,
         fontWeight: FontWeight.w500,
         fontSize: 18,
         wordSpacing: 1.5,
         fontFamily: "Poppins",
       ),
       titleSmall: TextStyle(
-        color: AppColors.whiteColor,
+        color: AppColors.darkGreen,
         fontWeight: FontWeight.w500,
         fontSize: 14,
         wordSpacing: 1.5,
