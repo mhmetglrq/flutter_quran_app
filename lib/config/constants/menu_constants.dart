@@ -15,7 +15,7 @@ List<Map<String, dynamic>> menuItems = [
     "svgPath": SvgConstants.headset.getSvg,
     "color": AppColors.listeningCardColor,
     "bottomColor": AppColors.listeningCardBottomColor,
-    "route": "/listening",
+    "route": AppRouteNames.surahListening,
   },
   {
     "title": "Test",

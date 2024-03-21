@@ -5,14 +5,14 @@ import 'package:quran/quran.dart' as quran;
 
 import '../../../config/widgets/surah/surah_item.dart';
 
-class SurahPage extends StatelessWidget {
-  const SurahPage({super.key});
+class SurahListeningPage extends StatelessWidget {
+  const SurahListeningPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Quran"),
+        title: const Text("Listening"),
       ),
       body: Padding(
         padding: context.paddingAllDefault,
@@ -24,7 +24,7 @@ class SurahPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return SurahItem(
                     surahIndex: index,
-                    route:  AppRouteNames.surahDetail,
+                    route: AppRouteNames.listening,
                   );
                 },
               ),

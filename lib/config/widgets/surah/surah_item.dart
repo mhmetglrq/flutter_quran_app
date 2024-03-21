@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quran_app/config/extensions/context_extension.dart';
 import 'package:flutter_quran_app/config/items/app_colors.dart';
-import 'package:flutter_quran_app/config/routes/app_route_names.dart';
 import 'package:flutter_quran_app/config/utility/enum/svg_enum.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quran/quran.dart' as quran;
-
 
 class SurahItem extends StatelessWidget {
   const SurahItem({
     super.key,
     required this.surahIndex,
+    required this.route,
   });
   final int surahIndex;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class SurahItem extends StatelessWidget {
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, AppRouteNames.surahDetail,
+          Navigator.pushNamed(context, route,
               arguments: {'surahIndex': surahIndex + 1});
         },
       ),
